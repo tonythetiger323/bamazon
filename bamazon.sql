@@ -1,8 +1,11 @@
+/* Drop database if it exists and create database */
 DROP DATABASE IF EXISTS bamazon_DB;
 CREATE DATABASE bamazon_DB;
 
+/* Code to use database */
 USE bamazon_DB;
 
+/* Code to create table */
 CREATE TABLE products(
     item_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     product_name VARCHAR(255) NOT NULL,
@@ -11,6 +14,7 @@ CREATE TABLE products(
     stock_quantity INT NOT NULL
 );
 
+/* Code to add products to table */
 INSERT INTO products (product_name, department_name, price, stock_quantity)
 VALUES ("Try Not To Suck", "Books", 20.00, 10), 
 ("Nintendo Switch", "Electronics", 300.00, 10),
