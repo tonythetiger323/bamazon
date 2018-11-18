@@ -30,6 +30,7 @@ const displayProducts = () => {
                 throw err;
             }
             console.log(data);
+            //TODO make console.log message here more clean looking
         }
     );
 };
