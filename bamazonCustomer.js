@@ -16,7 +16,7 @@ const connection = mysql.createConnection({
 });
 
 // connect to the mysql server and sql database
-connection.connect(function (err) {
+connection.connect((err) => {
     if (err) throw err;
     console.log("connected as id " + connection.threadId);
     displayProducts();
