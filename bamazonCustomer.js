@@ -19,10 +19,10 @@ const connection = mysql.createConnection({
 connection.connect((err) => {
     if (err) throw err;
     console.log("connected as id " + connection.threadId);
-    displayProducts();
+    startApp();
 });
 
-const displayProducts = () => {
+const startApp = () => {
     console.log("Welcome to Bamazon, here's what we currently have availale:");
     connection.query("SELECT * FROM products",
         (err, data) => {
@@ -32,5 +32,19 @@ const displayProducts = () => {
             data.forEach(row => console.log(`ID: ${row.item_id}\nProduct: ${row.product_name}\nPrice: ${row.price}\n----`));
         }
     );
+
+    inquirer.prompt(
+        {
+            name: "productId",
+            type: "input",
+            message: "Please enter the ID of the product you would like to buy."
+        },
+        {
+            name: "quatity",
+            type: "input",
+            message: "Please enter the quatity you would like to buy."
+        }
+    )
     connection.end();
+
 };
