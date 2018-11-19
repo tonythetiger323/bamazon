@@ -29,8 +29,8 @@ const displayProducts = () => {
             if (err) {
                 throw err;
             }
-            console.log(data);
-            //TODO make console.log message here more clean looking
+            data.forEach(row => console.log(`ID: ${row.item_id}\nProduct: ${row.product_name}\nPrice: ${row.price}\n----`));
         }
     );
+    connection.end();
 };

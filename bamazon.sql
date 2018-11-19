@@ -16,15 +16,15 @@ CREATE TABLE products(
 
 /* Code to add products to table */
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Try Not To Suck", "Books", 20.00, 10), 
-("Nintendo Switch", "Electronics", 300.00, 10),
-("Pokemon: Let's Go, Pikachu!", "Electronics", 60.00, 10),
-("Couch", "Furniture", 500.00, 10),
-("Jeans", "Clothing", 60.00, 10),
-("Shoes", "Clothing", 50.00, 10),
-("Gloves", "Clothing", 10.00, 10),
-("Microwave", "Appliances", 150.00, 10),
-("Shower Curtain", "Domestics", 15.00, 10),
-("Charlie Brown Christmas Tree", "Holiday", 15.00, 10);
+VALUES ("Try Not To Suck", "Books", 19.99, 10), 
+("Nintendo Switch", "Electronics", 299.99, 10),
+("Pokemon: Let's Go, Pikachu!", "Electronics", 59.99, 10),
+("Couch", "Furniture", 499.99, 10),
+("Jeans", "Clothing", 59.99, 10),
+("Shoes", "Clothing", 49.99, 10),
+("Gloves", "Clothing", 9.99, 10),
+("Microwave", "Appliances", 149.99, 10),
+("Shower Curtain", "Domestics", 14.99, 10),
+("Charlie Brown Christmas Tree", "Holiday", 14.99, 10);
 
 SELECT * FROM products;
