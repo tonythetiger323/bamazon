@@ -37,48 +37,57 @@ const startApp = () => {
     placeOrder();
 };
 
+const validateInput = (input) => {
+    const value = parseInt(input);
+    if (((isNaN(value)) === true) || (value <= 0)) {
+        console.log(`\n Please enter a whole number that is greater than 0.`);
+    } else {
+        return true;
+    }
+};
+
 const placeOrder = () => {
     // inquirer prompt asking which product would like to buy and how many, inquirer validates to make sure input entered is a number.
     inquirer.prompt([
         {
-            name: "productId",
+            name: "item_id",
             type: "input",
             message: "Please enter the ID number of the product you would like to buy.",
-            validate: (value) => {
-                if (isNaN(value) === false) {
-                    return true;
-                }
-                return false;
-            }
+            validate: validateInput
         },
         {
-            name: "quatity",
+            name: "quantity",
             type: "input",
             message: "Please enter the quatity you would like to buy.",
-            validate: (value) => {
-                if (isNaN(value) === false) {
-                    return true;
-                }
-                return false;
-            }
+            validate: validateInput
         }
     ]).then((answer) => {
-        console.log(answer);
+        console.log(`You have selected, a quantity ${answer.quantity} of item with item ID:${answer.item_id}`);
         connection.query(`
-        SELECT product FROM bamazon WHERE item_id = ${answer.productID}`, (err, data) => {
+        SELECT * FROM products WHERE ?`, { item_id: answer.item_id }, (err, data) => {
                 if (err) {
                     throw err;
-                } else if (data.stock_quantity <= 0) {
-                    console.log(`Insufficient quantity in stock! We currently have ${data.stock_quantity} in stock. Please try another order.`);
-                    startApp();
-                } else {
-                    console.log("Thank you for your purchase, please give us moment to process your order!");
-                    processOrder();
                 }
-            });
-    });
-};
+                if (data.length === 0) {
+                    console.log(`An incorrect item ID has been entered, ${answer.item_id} does not exist. Please try again.`);
+                    placeOrder();
+                } else {
+                    const itemData = data[0];
 
-const processOrder = () => {
-
+                    if (answer.quantity > itemData.stock_quantity) {
+                        console.log(`Insufficient quantity in stock! We currently have ${data.stock_quantity} in stock. Please try another order.`);
+                        placeOrder();
+                    } else {
+                        console.log("Thank you for your purchase, please give us moment to process your order!");
+                        connection.query(`UPDATE products SET stock_quantity = ${itemData.stock_quantity - answer.quantity} WHERE item_id = ${answer.item_id}`, (err, data) => {
+                            if (err) {
+                                throw err;
+                            }
+                            console.log(`Your order has been placed. Your final total is $${itemData.price * answer.quantity}\nThank you for your business!\n----`);
+                            connection.end();
+                        })
+                    }
+                }
+            })
+    })
 }
