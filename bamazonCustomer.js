@@ -31,10 +31,9 @@ const startApp = () => {
                 throw err;
             }
             data.forEach(row => console.log(`ID: ${row.item_id}\nProduct: ${row.product_name}\nPrice: ${row.price}\n----`));
-        }
-    );
-
-    placeOrder();
+        },
+        placeOrder()
+    )
 };
 
 //function to validate input is an integer greater than 0
@@ -85,10 +84,14 @@ const placeOrder = () => {
                                 throw err;
                             }
                             console.log(`Your order has been placed. Your final total is $${itemData.price * answer.quantity}\nThank you for your business!\n----`);
-                            connection.end();
-                        })
+
+                        },
+                            connection.end()
+                        )
                     }
                 }
-            })
-    })
-}
+            }
+        )
+    }
+    )
+};
