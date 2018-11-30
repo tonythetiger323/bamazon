@@ -31,14 +31,15 @@ const startApp = () => {
                 throw err;
             }
             data.forEach(row => console.log(`ID: ${row.item_id}\nProduct: ${row.product_name}\nPrice: ${row.price}\n----`));
+            placeOrder();
         },
     )
-    placeOrder()
 };
 
+
 //function to validate input is an integer greater than 0
-const validateInput = (input) => {
-    const value = parseInt(input);
+const validateInput = (inputEntered) => {
+    const value = parseInt(inputEntered);
     if (((isNaN(value)) === true) || (value <= 0)) {
         console.log(`\n Please enter a whole number that is greater than 0.`);
     } else {
@@ -48,7 +49,7 @@ const validateInput = (input) => {
 
 const placeOrder = () => {
     // inquirer prompt asking which product would like to buy and how many, inquirer validates to make sure input entered is a number.
-    inquirer.prompt([
+    inquirer.prompt(
         {
             name: "item_id",
             type: "input",
@@ -61,7 +62,7 @@ const placeOrder = () => {
             message: "Please enter the quatity you would like to buy.",
             validate: validateInput
         }
-    ]).then((answer) => {
+    ).then((answer) => {
         console.log(`You have selected, a quantity ${answer.quantity} of item with item ID:${answer.item_id}`);
         connection.query(`
         SELECT * FROM products WHERE ?`, { item_id: answer.item_id }, (err, data) => {
