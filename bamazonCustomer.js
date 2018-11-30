@@ -75,7 +75,7 @@ const placeOrder = () => {
                     const itemData = data[0];
 
                     if (answer.quantity > itemData.stock_quantity) {
-                        console.log(`Insufficient quantity in stock! We currently have ${data.stock_quantity} in stock. Please try another order.`);
+                        console.log(`Insufficient quantity in stock! We currently have ${itemData.stock_quantity} in stock. Please try another order.`);
                         placeOrder();
                     } else {
                         console.log("Thank you for your purchase, please give us moment to process your order!");
