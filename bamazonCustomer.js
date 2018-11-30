@@ -37,6 +37,7 @@ const startApp = () => {
     placeOrder();
 };
 
+//function to validate input is an integer greater than 0
 const validateInput = (input) => {
     const value = parseInt(input);
     if (((isNaN(value)) === true) || (value <= 0)) {
