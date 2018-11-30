@@ -1,7 +1,7 @@
 # bamazon
 
 ## Link to Demo:
-[Link to Demo](https://youtu.be/0wKeKq0sZNM)
+[Link to Demo](https://youtu.be/lS2jok3E8bo)
 
 ## About This Project:
 Bamazon is a javascript node application I had to make for homework, as part of the Northwestern University Full Stack Coding Bootcamp, whose purpose was to demonstrate my understanding of incorporating SQL into a node.js application.
