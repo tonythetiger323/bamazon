@@ -32,8 +32,8 @@ const startApp = () => {
             }
             data.forEach(row => console.log(`ID: ${row.item_id}\nProduct: ${row.product_name}\nPrice: ${row.price}\n----`));
         },
-        placeOrder()
     )
+    placeOrder()
 };
 
 //function to validate input is an integer greater than 0
